@@ -1,0 +1,20 @@
+
+
+/* Set anatomyListDiv width to max child width */
+.anatomyListDiv {
+    display: inline-block;
+}
+
+.anatomyBtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.menuRight {
+    float: right;
+}
+
+.btnClicked {
+    background-color:#C0C0C0;
+}

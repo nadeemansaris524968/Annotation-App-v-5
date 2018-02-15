@@ -1,4 +1,4 @@
-var SearchCtrlr = (function () {
+var ListCtrlr = (function () {
     var data = {
         "Major Anatomic Region": [
             {
@@ -721,8 +721,16 @@ var SearchCtrlr = (function () {
     };
 
     return {
-        getSearchData: function () {
-            return data;
+        getAnatomyList: function () {
+            var anatomyList = [];
+            data['Major Anatomic Region'].forEach(function(anatomy) {
+                anatomyList.push(anatomy);
+            });
+
+            return anatomyList;
+        },
+        getSubanatomyList: function (anatomy) {
+            return anatomy['Subanatomy'];
         }
     };
 })();
