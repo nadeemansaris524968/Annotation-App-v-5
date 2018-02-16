@@ -729,8 +729,15 @@ var ListCtrlr = (function () {
 
             return anatomyList;
         },
-        getSubanatomyList: function (anatomy) {
-            return anatomy['Subanatomy'];
+        getSubanatomyList: function (anatomyName) {
+            var subanatomyList = [];
+            data['Major Anatomic Region'].forEach(function(anatomy){
+                if (anatomyName === anatomy.name) {
+                    subanatomyList = anatomy.Subanatomy;
+                }
+            });
+
+            return subanatomyList;
         }
     };
 })();
