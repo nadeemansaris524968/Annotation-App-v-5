@@ -81,8 +81,10 @@ var UICtrlr = (function () {
     /* Called when anatomyBtn in anatomyListDiv is clicked */
     var createSubanatomyListDiv = function (subanatomyList) {
         if (subanatomyList.length > 0) {
-            /* Delete previous subanatomyListDiv */
+            /* Delete previous subanatomyListDiv $ rowListDiv */
             $('.' + DOMStrings.subanatomyListDiv).remove();
+            $('.' + DOMStrings.rowListDiv).remove();
+
             var subanatomyListDiv = document.createElement('div');
             subanatomyListDiv.classList.add(DOMStrings.subanatomyListDiv);
 
@@ -105,37 +107,42 @@ var UICtrlr = (function () {
     };
 
     var createRowListDiv = function (findings) {
-        var rowListDiv = document.createElement('div');
-        rowListDiv.classList.add(DOMStrings.rowListDiv);
-        for (var i = 0; i < 3; i++) {
-            /* Create rowDiv */
-            var rowDiv = document.createElement('div');
-            rowDiv.classList.add(`${DOMStrings.rowDiv + i}`);
+        if (findings.length > 0) {
+            /* Delete previous rowListDiv */
+            $('.' + DOMStrings.rowListDiv).remove();
 
-            /* Create free text area */
-            var freeText = document.createElement('textarea');
-            freeText.id = `${DOMStrings.freeTextID + i}`;
+            var rowListDiv = document.createElement('div');
+            rowListDiv.classList.add(DOMStrings.rowListDiv);
+            for (var i = 0; i < 3; i++) {
+                /* Create rowDiv */
+                var rowDiv = document.createElement('div');
+                rowDiv.classList.add(`${DOMStrings.rowDiv + i}`);
 
-            /* Create positiveNegativeCheck */
-            var checkBox = document.createElement('input');
-            checkBox.type = 'checkbox';
-            checkBox.id = `${DOMStrings.checkBoxID + i}`;
+                /* Create free text area */
+                var freeText = document.createElement('textarea');
+                freeText.id = `${DOMStrings.freeTextID + i}`;
 
-            var label = document.createElement('label');
-            label.htmlFor = `${DOMStrings.checkBoxID + i}`;
-            label.appendChild(document.createTextNode('Negative'));
+                /* Create positiveNegativeCheck */
+                var checkBox = document.createElement('input');
+                checkBox.type = 'checkbox';
+                checkBox.id = `${DOMStrings.checkBoxID + i}`;
 
-            /* Create findingsDropdown */
+                var label = document.createElement('label');
+                label.htmlFor = `${DOMStrings.checkBoxID + i}`;
+                label.appendChild(document.createTextNode('Negative'));
 
-            rowDiv.appendChild(freeText);
-            rowDiv.appendChild(checkBox);
-            rowDiv.appendChild(label);
+                /* Create findingsDropdown */
 
-            rowListDiv.appendChild(rowDiv);
+                rowDiv.appendChild(freeText);
+                rowDiv.appendChild(checkBox);
+                rowDiv.appendChild(label);
+
+                rowListDiv.appendChild(rowDiv);
+            }
+            /* Insert in to DOM */
+            var containerDiv = document.querySelector('.' + DOMStrings.container);
+            containerDiv.appendChild(rowListDiv);
         }
-        /* Insert in to DOM */
-        var containerDiv = document.querySelector('.' + DOMStrings.container);
-        containerDiv.appendChild(rowListDiv);
     };
 
     return {
@@ -143,7 +150,7 @@ var UICtrlr = (function () {
             console.log('Create AnatomyListDiv');
             createAnatomyListDiv(anatomyList);
         }
-    }
+    };
 })(ListCtrlr);
 
 
