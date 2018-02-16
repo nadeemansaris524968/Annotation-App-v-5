@@ -723,21 +723,35 @@ var ListCtrlr = (function () {
     return {
         getAnatomyList: function () {
             var anatomyList = [];
-            data['Major Anatomic Region'].forEach(function(anatomy) {
+            data['Major Anatomic Region'].forEach(function (anatomy) {
                 anatomyList.push(anatomy);
             });
 
             return anatomyList;
         },
-        getSubanatomyList: function (anatomyName) {
+        getSubanatomyListFor: function (anatomyName) {
             var subanatomyList = [];
-            data['Major Anatomic Region'].forEach(function(anatomy){
+            data['Major Anatomic Region'].forEach(function (anatomy) {
                 if (anatomyName === anatomy.name) {
                     subanatomyList = anatomy.Subanatomy;
                 }
             });
 
             return subanatomyList;
+        },
+        getFindingsFor: function (anatomyName, subanatomyName) {
+            var findings = [];
+            data['Major Anatomic Region'].forEach(function (anatomy) {
+                if (anatomyName === anatomy.name) {
+                    anatomy.Subanatomy.forEach(function (subanatomy) {
+                        if (subanatomyName === subanatomy.name) {
+                            findings = subanatomy.Findings;
+                        }
+                    });
+                }
+            });
+
+            return findings;
         }
     };
 })();

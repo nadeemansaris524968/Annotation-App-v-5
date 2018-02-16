@@ -23,7 +23,7 @@ var UICtrlr = (function () {
         anatomyBtn.classList.add(DOMStrings.btnClicked);
 
         /* createSubanatomyList */
-        var subanatomyList = ListCtrlr.getSubanatomyList(anatomyBtn.id);
+        var subanatomyList = ListCtrlr.getSubanatomyListFor(anatomyBtn.id);
         createSubanatomyListDiv(subanatomyList);
     };
 
@@ -36,7 +36,11 @@ var UICtrlr = (function () {
         }
         subanatomyBtn.classList.add(DOMStrings.btnClicked);
 
+        /* Grab anatomy name from anatomyBtn in anatomyListDiv */
+        var anatomy = $('div[class="anatomyListDiv"] :button[class*="btnClicked"]').attr('id');
+        var subanatomy = subanatomyBtn.id;
         /* createRowList */
+        var findings = ListCtrlr.getFindingsFor(anatomy, subanatomy);
     };
 
     var createAnatomyListDiv = function (anatomyList) {
