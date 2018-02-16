@@ -99,11 +99,8 @@ var UICtrlr = (function () {
 
     return {
         createListDivs: function (anatomyList) {
-            console.log('Will create AnatomyListDiv');
+            console.log('Create AnatomyListDiv');
             createAnatomyList(anatomyList);
-            console.log('Will create SubanatomyListDiv');
-            console.log('Will create RowListDiv');
-            console.log('Will create AddRowBtn, SaveBtn and SummaryReportDiv');
         }
     }
 })(ListCtrlr);
@@ -117,7 +114,7 @@ var appCtrlr = (function () {
         init: function () {
             console.log('Application started');
 
-            /* Data will come from the back-end */
+            /* UI generation point */
             var anatomyList = ListCtrlr.getAnatomyList();
             UICtrlr.createListDivs(anatomyList);
         }
