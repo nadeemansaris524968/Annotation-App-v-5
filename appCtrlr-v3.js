@@ -8,7 +8,11 @@ var UICtrlr = (function () {
         btnClicked: 'btnClicked',
         anatomyBtn: 'anatomyBtn',
         subanatomyBtn: 'subanatomyBtn',
-        menuRight: 'menuRight'
+        menuRight: 'menuRight',
+        rowListDiv: 'rowListDiv',
+        rowDiv: 'rowDiv_',
+        freeTextID: 'freeText_',
+        checkBoxID: 'checkBox_'
     };
 
     var onAnatomyClick = function (e) {
@@ -41,6 +45,7 @@ var UICtrlr = (function () {
         var subanatomy = subanatomyBtn.id;
         /* createRowList */
         var findings = ListCtrlr.getFindingsFor(anatomy, subanatomy);
+        createRowListDiv(findings);
     };
 
     var createAnatomyListDiv = function (anatomyList) {
@@ -99,12 +104,38 @@ var UICtrlr = (function () {
         }
     };
 
-    var createRowListDiv = function () {
-        // Create free text area
+    var createRowListDiv = function (findings) {
+        var rowListDiv = document.createElement('div');
+        rowListDiv.classList.add(DOMStrings.rowListDiv);
+        for (var i = 0; i < 3; i++) {
+            /* Create rowDiv */
+            var rowDiv = document.createElement('div');
+            rowDiv.classList.add(`${DOMStrings.rowDiv + i}`);
 
-        // Create positiveNegativeCheck
+            /* Create free text area */
+            var freeText = document.createElement('textarea');
+            freeText.id = `${DOMStrings.freeTextID + i}`;
 
-        // Create findingsDropdown
+            /* Create positiveNegativeCheck */
+            var checkBox = document.createElement('input');
+            checkBox.type = 'checkbox';
+            checkBox.id = `${DOMStrings.checkBoxID + i}`;
+
+            var label = document.createElement('label');
+            label.htmlFor = `${DOMStrings.checkBoxID + i}`;
+            label.appendChild(document.createTextNode('Negative'));
+
+            /* Create findingsDropdown */
+
+            rowDiv.appendChild(freeText);
+            rowDiv.appendChild(checkBox);
+            rowDiv.appendChild(label);
+
+            rowListDiv.appendChild(rowDiv);
+        }
+        /* Insert in to DOM */
+        var containerDiv = document.querySelector('.' + DOMStrings.container);
+        containerDiv.appendChild(rowListDiv);
     };
 
     return {
