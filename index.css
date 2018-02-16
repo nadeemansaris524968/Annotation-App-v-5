@@ -1,7 +1,7 @@
 
 
 /* Set anatomyListDiv width to max child width */
-.anatomyListDiv, .subanatomyListDiv, .rowListDiv {
+.anatomyListDiv, .subanatomyListDiv, .rowListDiv, .checkBoxDiv {
     display: inline-block;
     float: left;
 }

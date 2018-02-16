@@ -10,8 +10,9 @@ var UICtrlr = (function () {
         subanatomyBtn: 'subanatomyBtn',
         menuRight: 'menuRight',
         rowListDiv: 'rowListDiv',
-        rowDiv: 'rowDiv_',
+        rowDiv: 'rowDiv',
         freeTextID: 'freeText_',
+        checkBoxDiv: 'checkBoxDiv',
         checkBoxID: 'checkBox_'
     };
 
@@ -116,26 +117,34 @@ var UICtrlr = (function () {
             for (var i = 0; i < 3; i++) {
                 /* Create rowDiv */
                 var rowDiv = document.createElement('div');
-                rowDiv.classList.add(`${DOMStrings.rowDiv + i}`);
+                rowDiv.classList.add(DOMStrings.rowDiv);
 
                 /* Create free text area */
                 var freeText = document.createElement('textarea');
                 freeText.id = `${DOMStrings.freeTextID + i}`;
+                freeText.style.cssFloat = 'left';
 
                 /* Create positiveNegativeCheck */
+                var checkBoxDiv = document.createElement('div');
+                checkBoxDiv.classList.add(DOMStrings.checkBoxDiv);
+
                 var checkBox = document.createElement('input');
                 checkBox.type = 'checkbox';
                 checkBox.id = `${DOMStrings.checkBoxID + i}`;
+                checkBox.style.cssFloat = 'left';
 
                 var label = document.createElement('label');
                 label.htmlFor = `${DOMStrings.checkBoxID + i}`;
+                label.style.cssFloat = 'left';
                 label.appendChild(document.createTextNode('Negative'));
+
+                checkBoxDiv.appendChild(checkBox);
+                checkBoxDiv.appendChild(label);
 
                 /* Create findingsDropdown */
 
                 rowDiv.appendChild(freeText);
-                rowDiv.appendChild(checkBox);
-                rowDiv.appendChild(label);
+                rowDiv.appendChild(checkBoxDiv);
 
                 rowListDiv.appendChild(rowDiv);
             }
