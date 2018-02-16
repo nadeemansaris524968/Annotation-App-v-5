@@ -22,8 +22,9 @@ var UICtrlr = (function () {
         /* Add btnClicked class to self */
         anatomyBtn.classList.add(DOMStrings.btnClicked);
 
+        /* createSubanatomyList */
         var subanatomyList = ListCtrlr.getSubanatomyList(anatomyBtn.id);
-        createSubanatomyList(subanatomyList);
+        createSubanatomyListDiv(subanatomyList);
     };
 
     var onSubanatomyClick = function (e) {
@@ -35,10 +36,10 @@ var UICtrlr = (function () {
         }
         subanatomyBtn.classList.add(DOMStrings.btnClicked);
 
-        /* Populate respective findings */
+        /* createRowList */
     };
 
-    var createAnatomyList = function (anatomyList) {
+    var createAnatomyListDiv = function (anatomyList) {
         if (anatomyList.length > 0) {
             var anatomyListDiv = document.createElement('div');
             anatomyListDiv.classList.add(DOMStrings.anatomyListDiv);
@@ -68,7 +69,8 @@ var UICtrlr = (function () {
         }
     };
 
-    var createSubanatomyList = function (subanatomyList) {
+    /* Called when anatomyBtn in anatomyListDiv is clicked */
+    var createSubanatomyListDiv = function (subanatomyList) {
         if (subanatomyList.length > 0) {
             /* Delete previous subanatomyListDiv */
             $('.' + DOMStrings.subanatomyListDiv).remove();
@@ -93,14 +95,18 @@ var UICtrlr = (function () {
         }
     };
 
-    var createRowList = function () {
+    var createRowListDiv = function () {
+        // Create free text area
 
+        // Create positiveNegativeCheck
+
+        // Create findingsDropdown
     };
 
     return {
         createListDivs: function (anatomyList) {
             console.log('Create AnatomyListDiv');
-            createAnatomyList(anatomyList);
+            createAnatomyListDiv(anatomyList);
         }
     }
 })(ListCtrlr);
