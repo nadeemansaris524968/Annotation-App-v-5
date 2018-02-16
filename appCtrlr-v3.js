@@ -155,7 +155,7 @@ var UICtrlr = (function () {
     };
 
     return {
-        createListDivs: function (anatomyList) {
+        init: function (anatomyList) {
             console.log('Create AnatomyListDiv');
             createAnatomyListDiv(anatomyList);
         }
@@ -171,9 +171,9 @@ var appCtrlr = (function () {
         init: function () {
             console.log('Application started');
 
-            /* UI generation point */
+            /* UI init */
             var anatomyList = ListCtrlr.getAnatomyList();
-            UICtrlr.createListDivs(anatomyList);
+            UICtrlr.init(anatomyList);
         }
     }
 })(ListCtrlr, UICtrlr);
