@@ -8,23 +8,34 @@ var UICtrlr = (function () {
         btnClicked: 'btnClicked',
         anatomyBtn: 'anatomyBtn',
         subanatomyBtn: 'subanatomyBtn',
-        menuRight: 'menuRight',
-        btnClicked: 'btnClicked'
+        menuRight: 'menuRight'
     };
 
     var onAnatomyClick = function (e) {
         var anatomyBtn = e.target;
 
         /* Remove btnClicked class from all btns with class */
-        var anatomyBtns = $('.'+DOMStrings.anatomyBtn);
-        for(var i = 0; i < anatomyBtns.length; i++) {
+        var anatomyBtns = $('.' + DOMStrings.anatomyBtn);
+        for (var i = 0; i < anatomyBtns.length; i++) {
             anatomyBtns[i].classList.remove(DOMStrings.btnClicked);
         }
         /* Add btnClicked class to self */
         anatomyBtn.classList.add(DOMStrings.btnClicked);
-        
+
         var subanatomyList = ListCtrlr.getSubanatomyList(anatomyBtn.id);
         createSubanatomyList(subanatomyList);
+    };
+
+    var onSubanatomyClick = function (e) {
+        var subanatomyBtn = e.target;
+
+        var subanatomyBtns = $('.' + DOMStrings.subanatomyBtn);
+        for (var i = 0; i < subanatomyBtns.length; i++) {
+            subanatomyBtns[i].classList.remove(DOMStrings.btnClicked);
+        }
+        subanatomyBtn.classList.add(DOMStrings.btnClicked);
+
+        /* Populate respective findings */
     };
 
     var createAnatomyList = function (anatomyList) {
@@ -60,7 +71,7 @@ var UICtrlr = (function () {
     var createSubanatomyList = function (subanatomyList) {
         if (subanatomyList.length > 0) {
             /* Delete previous subanatomyListDiv */
-            $('.'+DOMStrings.subanatomyListDiv).remove();
+            $('.' + DOMStrings.subanatomyListDiv).remove();
             var subanatomyListDiv = document.createElement('div');
             subanatomyListDiv.classList.add(DOMStrings.subanatomyListDiv);
 
@@ -71,6 +82,8 @@ var UICtrlr = (function () {
                 subanatomyBtn.classList.add('btn');
                 subanatomyBtn.classList.add('btn-default');
                 subanatomyBtn.classList.add(DOMStrings.subanatomyBtn);
+                /* Click will create respective subanatomy's Findings */
+                subanatomyBtn.addEventListener('click', onSubanatomyClick);
 
                 subanatomyListDiv.appendChild(subanatomyBtn);
             });
