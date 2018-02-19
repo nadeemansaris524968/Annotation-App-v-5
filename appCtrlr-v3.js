@@ -82,7 +82,7 @@ var UICtrlr = (function () {
     /* Called when anatomyBtn in anatomyListDiv is clicked */
     var createSubanatomyListDiv = function (subanatomyList) {
         if (subanatomyList.length > 0) {
-            /* Delete previous subanatomyListDiv $ rowListDiv */
+            /* Delete previous subanatomyListDiv & rowListDiv */
             $('.' + DOMStrings.subanatomyListDiv).remove();
             $('.' + DOMStrings.rowListDiv).remove();
 
